@@ -6,9 +6,6 @@ import { json } from 'body-parser';
 import { mongoURI, cookieKey } from './/config/keys';
 
 
-
-
-
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoURI);
 
