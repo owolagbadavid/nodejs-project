@@ -1,6 +1,8 @@
 import { model } from 'mongoose';
 import requireLogin from '../middlewares/requireLogin';
 import { Request, Response } from 'express';
+// import { clearHash } from '../services/cache';
+import cleanCache from '../middlewares/cleanCache'
 
 const Blog = model('Blog');
 
@@ -14,8 +16,11 @@ export default app => {
     res.send(blog);
   });
 
-  app.get('/api/blogs', requireLogin, async (req: Request, res: Response) => {
-    const blogs = await Blog.find({ _user: (req.user as any).id });
+  app.get('/api/blogs', requireLogin, cleanCache, async (req: Request, res: Response) => {
+    const blogs = await (Blog.find({ _user: (req.user as any).id }) as any )
+    .cache({
+      key: (req.user as any).id
+    });
 
     res.send(blogs);
   });

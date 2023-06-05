@@ -5,19 +5,28 @@ const client = createClient({url: redisUrl});
 import { Query, model } from 'mongoose';
 
 const exec = Query.prototype.exec;
+(Query.prototype as any).cache = function(options: {key?: string} = {}) {
+  this.useCache = true;
+  this.hashKey = JSON.stringify(options.key || '');
+  return this
+}
+
 
 Query.prototype.exec = async function () {
+
+  if(!this.useCache){
+    return exec.apply(this, arguments)
+  }
   const key = JSON.stringify({ 
     collection: this.mongooseCollection.name,
     ...this.getQuery()
   })
   
   // check if we have a value for 'key' in redis
-  const cacheValue = await client.get(key);
+  const cacheValue = await client.hGet(this.hashKey, key);
 // check if the value is null
   if (cacheValue) {
 // if so, return that
-console.log(this);
 
 
 const doc = JSON.parse(cacheValue);
@@ -29,6 +38,12 @@ return Array.isArray(doc)
   }
 // otherwise, issue the query and store the result in redis
   const result = await exec.apply(this, arguments);
-client.set(key, JSON.stringify(result));
+  await client.hSet(this.hashKey, key, JSON.stringify(result));
+  await client.expire(this.hashKey, 10);
   return result;
 };
+
+
+export const clearHash = (hashKey: string) => {
+  client.del(JSON.stringify(hashKey));
+}
