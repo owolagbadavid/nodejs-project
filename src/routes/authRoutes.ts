@@ -11,15 +11,9 @@ export default (app: Express) => {
       next();
     })
   );
-
-  app.get(
-    '/auth/google/callback',
-    passport.authenticate('google', 
-    {failureRedirect: '/login'},
-    (req: Request, res: Response) => {
-      res.redirect('/blogs');
-    })
-  );
+  app.get( '/auth/google/callback', 
+  passport.authenticate('google', 
+  {failureRedirect: '/login', successRedirect: '/blogs'}) );
 
   app.get('/auth/logout', (req: Request, res: Response) => {
     req.logout(()=>{});

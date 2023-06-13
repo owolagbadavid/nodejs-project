@@ -3,3 +3,4 @@ nohup.out
 .DS_Store
 src/config/dev.ts
 /dist
+.env

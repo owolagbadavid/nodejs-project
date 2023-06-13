@@ -2,17 +2,18 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
-import { json } from 'body-parser';
-import { mongoURI, cookieKey } from './/config/keys';
+import getExport from './/config/keys';
+const { mongoURI, cookieKey } = getExport();
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect(mongoURI);
+mongoose.connect(mongoURI).
+then(() => console.log('MongoDB Connected'))
+.catch(err => console.log(err));
 
-express
 const app = express();
 
-app.use(json());
+// app.use(json());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,

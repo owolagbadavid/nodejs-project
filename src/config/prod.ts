@@ -3,6 +3,11 @@ export const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
 export const mongoURI = process.env.MONGO_URI;
 export const cookieKey = process.env.COOKIE_KEY;
 
+const keys = { 
+    googleClientID,
+    googleClientSecret,
+    mongoURI,
+    cookieKey
+}
 
-
-export * as keys from './prod';
+export default keys;
