@@ -1,20 +1,21 @@
 import dotenv from 'dotenv';
+import { Keys } from '../types/';
 dotenv.config();
-import * as dev from './dev';
-import * as prod from './prod';
-import * as ci from './ci';
 
-export const getExport = () => {
-  switch (process.env.NODE_ENV) {
-    case 'development':
-      return dev;
-    case 'production':
-      return prod;
-    case 'ci':
-      return ci;
-    default:
-      return dev;
-  }
-};
+let keys: Keys;
 
-export default getExport;
+if(process.env.NODE_ENV === 'ci'){
+    keys = require('./ci');
+}
+else if(process.env.NODE_ENV === 'production'){
+    keys = require('./prod');
+}
+else{
+    keys = require('./dev');
+}
+
+export default keys;
+export const googleClientID = keys.googleClientID;
+export const googleClientSecret = keys.googleClientSecret;
+export const mongoURI = keys.mongoURI;
+export const cookieKey = keys.cookieKey;

@@ -2,8 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
-import getExport from './/config/keys';
-const { mongoURI, cookieKey } = getExport();
+import { mongoURI, cookieKey } from './/config/keys';
+
 
 
 mongoose.Promise = global.Promise;

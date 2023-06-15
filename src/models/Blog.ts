@@ -1,11 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 const { Schema } = mongoose;
 
-const blogSchema = new Schema({
+interface IBlog {
+  title: string;
+  content: string;
+  createdAt: Date;
+  _user: Types.ObjectId;
+}
+
+const blogSchema = new Schema<IBlog>({
   title: String,
   content: String,
   createdAt: { type: Date, default: Date.now },
   _user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-mongoose.model('Blog', blogSchema);
+mongoose.model<IBlog>('Blog', blogSchema);
