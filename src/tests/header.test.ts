@@ -1,4 +1,5 @@
 import Page, {MyPage} from './helpers/page';
+import teardown from './setup';
 
 
 let page: MyPage;
@@ -11,6 +12,9 @@ beforeEach(async () => {
 afterEach(async () => {
 	await page.close();
 });
+
+afterAll(async ()=> await teardown());
+
 
 test('Header has the correct test', async () => {
 	const text = await page.getContentsOf('a.brand-logo');
