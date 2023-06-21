@@ -7,8 +7,8 @@ export interface IUser {
 }
 
 const userSchema = new Schema<IUser>({
-  googleId: String,
-  displayName: String
+	googleId: String,
+	displayName: String
 });
 
 mongoose.model<IUser>('User', userSchema);

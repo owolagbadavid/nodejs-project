@@ -1,17 +1,17 @@
 import dotenv from 'dotenv';
-import { Keys } from '../types/';
+import { Keys } from '../types';
 dotenv.config();
 
 let keys: Keys;
 
 if(process.env.NODE_ENV === 'ci'){
-    keys = require('./ci');
+	keys = require('./ci');
 }
 else if(process.env.NODE_ENV === 'production'){
-    keys = require('./prod');
+	keys = require('./prod');
 }
 else{
-    keys = require('./dev');
+	keys = require('./dev');
 }
 
 export default keys;

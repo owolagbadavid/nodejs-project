@@ -1,7 +1,7 @@
 import buffer from 'buffer';
 import Keygrip from 'keygrip';
 import { cookieKey } from '../../config/keys';
-import { User } from '../../types/';
+import { User } from '../../types';
 
 const keygrip = new Keygrip([cookieKey]);
 

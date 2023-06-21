@@ -4,10 +4,10 @@ export const mongoURI = process.env.MONGO_URI;
 export const cookieKey = process.env.COOKIE_KEY;
 
 const keys = { 
-    googleClientID,
-    googleClientSecret,
-    mongoURI,
-    cookieKey
-}
+	googleClientID,
+	googleClientSecret,
+	mongoURI,
+	cookieKey
+};
 
 export default keys;
