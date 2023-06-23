@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - 17
-dist: precise
+  - 20.3.0
+dist: focal
 services:
   - mongodb
   - redis-server
