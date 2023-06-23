@@ -7,7 +7,6 @@ export type MyPage = Page & Browser & CustomPage;
 export default class CustomPage {
 	static async build() {
 		const browser = await puppeteer.launch({
-			headless: true,
 			args: ['--no-sandbox']
 		});
 
