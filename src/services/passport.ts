@@ -2,14 +2,14 @@ import passport from 'passport';
 import { Strategy } from 'passport-google-oauth20';
 import mongoose from 'mongoose';
 import keys from '..//config/keys';
-import { User } from '../types';
+
 
 
 const User = mongoose.model('User');
 const GoogleStrategy = Strategy;
 
-passport.serializeUser((user: User, done) => {
-	done(null, user._id);
+passport.serializeUser((user, done) => {
+	done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {

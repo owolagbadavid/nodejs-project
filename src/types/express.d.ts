@@ -1,11 +1,15 @@
+
+
 declare global {
     namespace Express {
 
-    export interface Request {
-        user?: ReqUser;
+    export interface User {
+        id: string;
     }
+    
+
   }
 }
-export interface ReqUser {
+export interface MyUser {
     id: string;
 }
