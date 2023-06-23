@@ -1,9 +1,8 @@
+import keys from '../config/keys';
 import { createClient } from 'redis';
-const redisUrl = 'redis://127.0.0.1:6379';
-const client = createClient({url: redisUrl});
+const client = createClient({url: keys.redisUrl});
 (async () => await client.connect())();
 import { Query } from 'mongoose';
-
 
 const exec = Query.prototype.exec;
 Query.prototype.cache = function(options: {key?: string} = {}) {

@@ -3,4 +3,5 @@ export type Keys = {
     googleClientSecret: string;
     mongoURI: string;
     cookieKey: string;
+    redisUrl: string;
 }

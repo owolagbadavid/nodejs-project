@@ -36,7 +36,7 @@ import blogRoutes from './routes/blogRoutes';
 authRoutes(app);
 blogRoutes(app);
 
-if (['production'].includes(process.env.NODE_ENV)) {
+if (['production', 'ci'].includes(process.env.NODE_ENV)) {
 	app.use(express.static('client/build'));
 
 
