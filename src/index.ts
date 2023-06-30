@@ -33,8 +33,10 @@ import './services/cache';
 
 import authRoutes from './routes/authRoutes';
 import blogRoutes from './routes/blogRoutes';
+import uploadRoutes from './routes/uploadRoutes';
 authRoutes(app);
 blogRoutes(app);
+uploadRoutes(app);
 
 if (['production', 'ci'].includes(process.env.NODE_ENV)) {
 	app.use(express.static('client/build'));

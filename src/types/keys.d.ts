@@ -4,4 +4,6 @@ export type Keys = {
     mongoURI: string;
     cookieKey: string;
     redisUrl: string;
+    accessKeyId: string;
+    secretAccessKey: string;
 }
