@@ -15,6 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.363.0",
+    "@aws-sdk/s3-request-presigner": "^3.363.0",
     "aws-sdk": "^2.1389.0",
     "body-parser": "1.20.2",
     "concurrently": "8.1.0",
@@ -31,7 +33,7 @@
     "puppeteer": "20.5.0",
     "redis": "4.6.7",
     "ts-node": "^10.9.1",
-    "uuid": "9.0.0"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/cookie-session": "^2.0.44",
