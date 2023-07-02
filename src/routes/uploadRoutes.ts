@@ -22,12 +22,14 @@ export default (app: Express) => {
 
 	app.get('/api/upload', requireLogin, async (req, res) => {
 
-		const key = `${req.user.id}/${uuidv4()}.jpeg`;
+		const type = req.query.fileType as string;
+
+		const key = `${req.user.id}/${uuidv4()}.${type.split('/')[1]}`;
 
 		const command = new PutObjectCommand({
 			Bucket: 'nodejs-blog',
 			Key: key,
-			ContentType: 'image/jpeg',
+			ContentType: type,
 		});
     
 
