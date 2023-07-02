@@ -27,7 +27,7 @@ export default (app: Express) => {
 		const command = new PutObjectCommand({
 			Bucket: 'nodejs-blog',
 			Key: key,
-			ContentType: 'jpeg',
+			ContentType: 'image/jpeg',
 		});
     
 
